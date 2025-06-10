@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Edit Meter</h2>
+<form method="post">
+    <input type="text" name="nickname" value="{{ meter.nickname }}" required>
+    <select name="type">
+        <option value="electricity" {% if meter.type=='electricity' %}selected{% endif %}>Electricity</option>
+        <option value="gas" {% if meter.type=='gas' %}selected{% endif %}>Gas</option>
+        <option value="water" {% if meter.type=='water' %}selected{% endif %}>Water</option>
+    </select>
+    <input type="text" name="tenant" value="{{ meter.tenant }}" required>
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

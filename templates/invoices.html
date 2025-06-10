@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Invoices for {{ month }} ({{ type }})</h2>
+<table border="1">
+<tr><th>Tenant</th><th>Meter</th><th>Last Reading</th><th>Current Reading</th><th>Difference</th></tr>
+{% for inv in invoices %}
+<tr>
+<td>{{ inv.tenant }}</td>
+<td>{{ inv.nickname }}</td>
+<td>{{ inv.last }}</td>
+<td>{{ inv.current }}</td>
+<td>{{ inv.diff }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

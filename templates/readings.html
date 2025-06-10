@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Enter Readings for {{ month }} ({{ type }})</h2>
+<form method="post">
+<table border="1">
+<tr><th>Nickname</th><th>Current State</th></tr>
+{% for meter in meters %}
+<tr>
+<td>{{ meter.nickname }}</td>
+<td><input type="number" step="0.01" name="reading_{{ meter.id }}" value="{{ readings[meter.id] if readings and meter.id in readings else '' }}"></td>
+</tr>
+{% endfor %}
+</table>
+<button type="submit">Save</button>
+</form>
+{% endblock %}

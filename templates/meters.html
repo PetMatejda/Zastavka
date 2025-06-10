@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Meters</h2>
+<form method="post" action="/meters">
+    <input type="text" name="nickname" placeholder="Nickname" required>
+    <select name="type">
+        <option value="electricity">Electricity</option>
+        <option value="gas">Gas</option>
+        <option value="water">Water</option>
+    </select>
+    <input type="text" name="tenant" placeholder="Tenant" required>
+    <button type="submit">Add Meter</button>
+</form>
+<table border="1">
+<tr><th>ID</th><th>Nickname</th><th>Type</th><th>Tenant</th><th>Actions</th></tr>
+{% for m in meters %}
+<tr>
+<td>{{ m.id }}</td>
+<td>{{ m.nickname }}</td>
+<td>{{ m.type }}</td>
+<td>{{ m.tenant }}</td>
+<td><a href="/meters/{{ m.id }}/edit">Edit</a></td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
