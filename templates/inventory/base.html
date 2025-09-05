@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Inventory{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        nav a { margin-right: 10px; }
+        img.icon { width: 40px; height: 40px; object-fit: cover; }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="{{ url_for('inventory.ingredients') }}">Suroviny</a>
+    <a href="{{ url_for('inventory.purchase') }}">Nákup</a>
+    <a href="{{ url_for('inventory.consume') }}">Spotřeba</a>
+    <a href="{{ url_for('inventory.critical') }}">Kritické množství</a>
+    <a href="{{ url_for('inventory.activity') }}">Aktivita</a>
+    {% if google.authorized %}
+        <a href="{{ url_for('inventory.logout') }}">Odhlásit</a>
+    {% else %}
+        <a href="{{ url_for('inventory.login') }}">Přihlásit</a>
+    {% endif %}
+</nav>
+<hr>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul>
+    {% for msg in messages %}<li>{{ msg }}</li>{% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% block content %}{% endblock %}
+</body>
+</html>

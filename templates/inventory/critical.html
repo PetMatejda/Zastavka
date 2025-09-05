@@ -1,0 +1,14 @@
+{% extends 'inventory/base.html' %}
+{% block title %}Kritické množství{% endblock %}
+{% block content %}
+<h1>Kritické množství</h1>
+{% if items %}
+<ul>
+{% for ing in items %}
+  <li>{% if ing.image_path %}<img class="icon" src="/{{ ing.image_path }}">{% endif %} {{ ing.name }} ({{ ing.quantity }} / {{ ing.critical_quantity }})</li>
+{% endfor %}
+</ul>
+{% else %}
+<p>Vše je v pořádku.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'inventory/base.html' %}
+{% block title %}Suroviny{% endblock %}
+{% block content %}
+<h1>Suroviny</h1>
+<table border="1" cellpadding="5">
+<tr><th>Obrázek</th><th>Název</th><th>Množství</th><th>Kritické množství</th></tr>
+{% for ing in ingredients %}
+<tr {% if ing.quantity <= ing.critical_quantity %}style="background-color:#ffdddd"{% endif %}>
+<td>{% if ing.image_path %}<img class="icon" src="/{{ ing.image_path }}">{% endif %}</td>
+<td>{{ ing.name }}</td>
+<td>{{ ing.quantity }}</td>
+<td>{{ ing.critical_quantity }}</td>
+</tr>
+{% endfor %}
+</table>
+<h2>Přidat surovinu</h2>
+<form action="{{ url_for('inventory.add_ingredient') }}" method="post" enctype="multipart/form-data">
+  Název: <input type="text" name="name" required><br>
+  Množství: <input type="number" step="0.01" name="quantity" required><br>
+  Kritické množství: <input type="number" step="0.01" name="critical" required><br>
+  Obrázek: <input type="file" name="image"><br>
+  <input type="submit" value="Uložit">
+</form>
+{% endblock %}
