@@ -1,0 +1,17 @@
+{% extends 'inventory/base.html' %}
+{% block title %}Aktivita{% endblock %}
+{% block content %}
+<h1>Aktivita</h1>
+<table border="1" cellpadding="5">
+<tr><th>Čas</th><th>Uživatel</th><th>Akce</th><th>Surovina</th><th>Množství</th></tr>
+{% for t in transactions %}
+<tr>
+  <td>{{ t.timestamp }}</td>
+  <td>{{ t.user.email if t.user else 'neznámý' }}</td>
+  <td>{{ t.action }}</td>
+  <td>{{ t.ingredient.name }}</td>
+  <td>{{ t.quantity }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

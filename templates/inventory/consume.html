@@ -1,0 +1,11 @@
+{% extends 'inventory/base.html' %}
+{% block title %}Spotřeba{% endblock %}
+{% block content %}
+<h1>Spotřeba</h1>
+<form method="post" enctype="multipart/form-data">
+  Název suroviny: <input type="text" name="name" id="name" required><br>
+  Množství: <input type="number" step="0.01" name="quantity" required><br>
+  Foto suroviny (volitelné): <input type="file" name="image" accept="image/*"><br>
+  <input type="submit" value="Odeslat">
+</form>
+{% endblock %}
